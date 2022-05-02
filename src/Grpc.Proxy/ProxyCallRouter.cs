@@ -13,7 +13,7 @@ public sealed class ProxyCallRouter : IProxyCallInvoker
     public void Add(ServiceDescriptor descriptor, CallInvoker callInvoker)
     {
         foreach (var method in descriptor.Methods)
-            _routes.Add(method.FullName, callInvoker);
+            _routes.Add($"/{method.Service}/{method.Name}", callInvoker);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
