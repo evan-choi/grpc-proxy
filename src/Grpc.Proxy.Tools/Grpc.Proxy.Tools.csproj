@@ -26,7 +26,7 @@
     <PropertyGroup Label="NuGet package definition">
         <DevelopmentDependency>true</DevelopmentDependency>
         <NoPackageAnalysis>true</NoPackageAnalysis>
-        <PackageId>Grpc.Proxy.Tools</PackageId>
+        <PackageId>Evan.Grpc.Proxy.Tools</PackageId>
         <Authors>evan-choi</Authors>
         <Copyright>Copyright 2022 evan-choi</Copyright>
         <Description>gRPC and Protocol Buffer proxy</Description>
