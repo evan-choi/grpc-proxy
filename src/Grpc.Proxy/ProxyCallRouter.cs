@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Google.Protobuf.Reflection;
 using Grpc.Core;
 
-namespace Grpc.Proxy.Core;
+namespace Grpc.Proxy;
 
 public sealed class ProxyCallRouter : IProxyCallInvoker
 {

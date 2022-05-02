@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Grpc.Core;
 
-namespace Grpc.Proxy.Core;
+namespace Grpc.Proxy;
 
 public interface IProxyCallInvoker
 {

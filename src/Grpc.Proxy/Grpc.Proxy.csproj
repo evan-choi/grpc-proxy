@@ -3,7 +3,6 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <LangVersion>10</LangVersion>
-        <RootNamespace>Grpc.Proxy.Core</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -12,7 +11,7 @@
     </ItemGroup>
 
     <PropertyGroup Label="NuGet package definition">
-        <PackageId>Grpc.Proxy</PackageId>
+        <PackageId>Evan.Grpc.Proxy</PackageId>
         <Authors>evan-choi</Authors>
         <Copyright>Copyright 2022 evan-choi</Copyright>
         <Description>gRPC and Protocol Buffer proxy</Description>

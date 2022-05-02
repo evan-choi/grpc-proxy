@@ -16,6 +16,8 @@
         <PackageReference Include="Verify.NUnit" Version="16.7.0" />
         <PackageReference Include="Verify.SourceGenerators" Version="1.4.0" />
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.1.0" PrivateAssets="all" />
+        <PackageReference Include="Grpc.Core.Api" Version="2.45.0" GeneratePathProperty="true" PrivateAssets="All" />
+        <PackageReference Include="Google.Protobuf" Version="3.20.1" />
     </ItemGroup>
 
     <ItemGroup>

@@ -11,7 +11,7 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3" PrivateAssets="All" />
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.1.0" PrivateAssets="All" />
-        <PackageReference Include="Grpc.Core.Api" Version="2.45.0" GeneratePathProperty="true" />
+        <PackageReference Include="Grpc.Core.Api" Version="2.45.0" GeneratePathProperty="true" PrivateAssets="All" />
     </ItemGroup>
 
     <ItemGroup>

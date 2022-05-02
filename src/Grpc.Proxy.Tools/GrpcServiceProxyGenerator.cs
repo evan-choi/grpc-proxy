@@ -129,7 +129,7 @@ public class GrpcServiceProxyGenerator : IIncrementalGenerator
     }
 }");
 
-            context.AddSource($"{serviceName}Proxy.gen.cs", SourceText.From(gen.ToString(), Encoding.UTF8));
+            context.AddSource($"{serviceType.Name}.{serviceName}Proxy.gen.cs", SourceText.From(gen.ToString(), Encoding.UTF8));
         }
     }
 
