@@ -10,10 +10,15 @@ public sealed class ProxyCallRouter : IProxyCallInvoker
 {
     private readonly Dictionary<string, CallInvoker> _routes = new();
 
-    public void Add(ServiceDescriptor descriptor, CallInvoker callInvoker)
+    public void Add(ServiceDescriptor service, CallInvoker callInvoker)
     {
-        foreach (var method in descriptor.Methods)
-            _routes.Add($"/{method.Service.Name}/{method.Name}", callInvoker);
+        foreach (var method in service.Methods)
+            Add(method, callInvoker);
+    }
+
+    public void Add(MethodDescriptor method, CallInvoker callInvoker)
+    {
+        _routes.Add($"/{method.Service.FullName}/{method.Name}", callInvoker);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
