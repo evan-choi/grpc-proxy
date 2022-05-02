@@ -9,7 +9,7 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace Grpc.Proxy.Tools.Tests.Proto {
+namespace Grpc.Proxy.Tests.Proto {
 
   /// <summary>Holder for reflection information generated from test.proto</summary>
   public static partial class TestReflection {
@@ -37,8 +37,8 @@ namespace Grpc.Proxy.Tools.Tests.Proto {
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Grpc.Proxy.Tools.Tests.Proto.PingRequest), global::Grpc.Proxy.Tools.Tests.Proto.PingRequest.Parser, new[]{ "Message" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Grpc.Proxy.Tools.Tests.Proto.PongResponse), global::Grpc.Proxy.Tools.Tests.Proto.PongResponse.Parser, new[]{ "Ping", "Message" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Grpc.Proxy.Tests.Proto.PingRequest), global::Grpc.Proxy.Tests.Proto.PingRequest.Parser, new[]{ "Message" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Grpc.Proxy.Tests.Proto.PongResponse), global::Grpc.Proxy.Tests.Proto.PongResponse.Parser, new[]{ "Ping", "Message" }, null, null, null, null)
           }));
     }
     #endregion
@@ -59,7 +59,7 @@ namespace Grpc.Proxy.Tools.Tests.Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Grpc.Proxy.Tools.Tests.Proto.TestReflection.Descriptor.MessageTypes[0]; }
+      get { return global::Grpc.Proxy.Tests.Proto.TestReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -248,7 +248,7 @@ namespace Grpc.Proxy.Tools.Tests.Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Grpc.Proxy.Tools.Tests.Proto.TestReflection.Descriptor.MessageTypes[1]; }
+      get { return global::Grpc.Proxy.Tests.Proto.TestReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -281,10 +281,10 @@ namespace Grpc.Proxy.Tools.Tests.Proto {
 
     /// <summary>Field number for the "ping" field.</summary>
     public const int PingFieldNumber = 1;
-    private global::Grpc.Proxy.Tools.Tests.Proto.PingRequest ping_;
+    private global::Grpc.Proxy.Tests.Proto.PingRequest ping_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Grpc.Proxy.Tools.Tests.Proto.PingRequest Ping {
+    public global::Grpc.Proxy.Tests.Proto.PingRequest Ping {
       get { return ping_; }
       set {
         ping_ = value;
@@ -403,7 +403,7 @@ namespace Grpc.Proxy.Tools.Tests.Proto {
       }
       if (other.ping_ != null) {
         if (ping_ == null) {
-          Ping = new global::Grpc.Proxy.Tools.Tests.Proto.PingRequest();
+          Ping = new global::Grpc.Proxy.Tests.Proto.PingRequest();
         }
         Ping.MergeFrom(other.Ping);
       }
@@ -427,7 +427,7 @@ namespace Grpc.Proxy.Tools.Tests.Proto {
             break;
           case 10: {
             if (ping_ == null) {
-              Ping = new global::Grpc.Proxy.Tools.Tests.Proto.PingRequest();
+              Ping = new global::Grpc.Proxy.Tests.Proto.PingRequest();
             }
             input.ReadMessage(Ping);
             break;
@@ -453,7 +453,7 @@ namespace Grpc.Proxy.Tools.Tests.Proto {
             break;
           case 10: {
             if (ping_ == null) {
-              Ping = new global::Grpc.Proxy.Tools.Tests.Proto.PingRequest();
+              Ping = new global::Grpc.Proxy.Tests.Proto.PingRequest();
             }
             input.ReadMessage(Ping);
             break;

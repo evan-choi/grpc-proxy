@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using Grpc.Proxy.Tools.Extensions;
 using Microsoft.CodeAnalysis;
@@ -12,13 +13,13 @@ internal readonly struct GrpcServiceDeclaration
 
     public string ServiceName { get; }
 
-    public GrpcMethodDeclaration[] Methods { get; }
+    public ImmutableDictionary<string, GrpcMethodDeclaration> Methods { get; }
 
-    public GrpcServiceDeclaration(ITypeSymbol typeSymbol, string serviceName, GrpcMethodDeclaration[] methods)
+    public GrpcServiceDeclaration(ITypeSymbol typeSymbol, string serviceName, IDictionary<string, GrpcMethodDeclaration> methods)
     {
         TypeSymbol = typeSymbol;
         ServiceName = serviceName;
-        Methods = methods;
+        Methods = methods.ToImmutableDictionary();
     }
 
     public static bool TryResolve(
@@ -31,7 +32,7 @@ internal readonly struct GrpcServiceDeclaration
             .Where(x => x.IsStatic);
 
         string serviceName = null;
-        var grpcMethods = new List<GrpcMethodDeclaration>();
+        var grpcMethods = new Dictionary<string, GrpcMethodDeclaration>();
 
         foreach (var field in staticFields)
         {
@@ -52,7 +53,7 @@ internal readonly struct GrpcServiceDeclaration
                 if (syntax is VariableDeclaratorSyntax { Initializer.Value: ObjectCreationExpressionSyntax value } &&
                     GrpcMethodDeclaration.TryResolve(context, value, out var grpcMethodDeclaration))
                 {
-                    grpcMethods.Add(grpcMethodDeclaration);
+                    grpcMethods.Add(field.Name, grpcMethodDeclaration);
                 }
             }
         }
@@ -63,7 +64,7 @@ internal readonly struct GrpcServiceDeclaration
             return false;
         }
 
-        declaration = new GrpcServiceDeclaration(typeSymbol, serviceName, grpcMethods.ToArray());
+        declaration = new GrpcServiceDeclaration(typeSymbol, serviceName, grpcMethods);
         return true;
     }
 }

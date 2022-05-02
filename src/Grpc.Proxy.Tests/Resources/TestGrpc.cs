@@ -7,7 +7,7 @@
 
 using grpc = global::Grpc.Core;
 
-namespace Grpc.Proxy.Tools.Tests.Proto {
+namespace Grpc.Proxy.Tests.Proto {
   public static partial class Test
   {
     static readonly string __ServiceName = "a.b.c.d.Test";
@@ -46,12 +46,12 @@ namespace Grpc.Proxy.Tools.Tests.Proto {
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Grpc.Proxy.Tools.Tests.Proto.PingRequest> __Marshaller_a_b_c_d_PingRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Grpc.Proxy.Tools.Tests.Proto.PingRequest.Parser));
+    static readonly grpc::Marshaller<global::Grpc.Proxy.Tests.Proto.PingRequest> __Marshaller_a_b_c_d_PingRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Grpc.Proxy.Tests.Proto.PingRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Grpc.Proxy.Tools.Tests.Proto.PongResponse> __Marshaller_a_b_c_d_PongResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Grpc.Proxy.Tools.Tests.Proto.PongResponse.Parser));
+    static readonly grpc::Marshaller<global::Grpc.Proxy.Tests.Proto.PongResponse> __Marshaller_a_b_c_d_PongResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Grpc.Proxy.Tests.Proto.PongResponse.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::Grpc.Proxy.Tools.Tests.Proto.PingRequest, global::Grpc.Proxy.Tools.Tests.Proto.PongResponse> __Method_Ping = new grpc::Method<global::Grpc.Proxy.Tools.Tests.Proto.PingRequest, global::Grpc.Proxy.Tools.Tests.Proto.PongResponse>(
+    static readonly grpc::Method<global::Grpc.Proxy.Tests.Proto.PingRequest, global::Grpc.Proxy.Tests.Proto.PongResponse> __Method_Ping = new grpc::Method<global::Grpc.Proxy.Tests.Proto.PingRequest, global::Grpc.Proxy.Tests.Proto.PongResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "Ping",
@@ -59,7 +59,7 @@ namespace Grpc.Proxy.Tools.Tests.Proto {
         __Marshaller_a_b_c_d_PongResponse);
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::Grpc.Proxy.Tools.Tests.Proto.PingRequest, global::Grpc.Proxy.Tools.Tests.Proto.PongResponse> __Method_PingClientStream = new grpc::Method<global::Grpc.Proxy.Tools.Tests.Proto.PingRequest, global::Grpc.Proxy.Tools.Tests.Proto.PongResponse>(
+    static readonly grpc::Method<global::Grpc.Proxy.Tests.Proto.PingRequest, global::Grpc.Proxy.Tests.Proto.PongResponse> __Method_PingClientStream = new grpc::Method<global::Grpc.Proxy.Tests.Proto.PingRequest, global::Grpc.Proxy.Tests.Proto.PongResponse>(
         grpc::MethodType.ClientStreaming,
         __ServiceName,
         "PingClientStream",
@@ -67,7 +67,7 @@ namespace Grpc.Proxy.Tools.Tests.Proto {
         __Marshaller_a_b_c_d_PongResponse);
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::Grpc.Proxy.Tools.Tests.Proto.PingRequest, global::Grpc.Proxy.Tools.Tests.Proto.PongResponse> __Method_PingServerStream = new grpc::Method<global::Grpc.Proxy.Tools.Tests.Proto.PingRequest, global::Grpc.Proxy.Tools.Tests.Proto.PongResponse>(
+    static readonly grpc::Method<global::Grpc.Proxy.Tests.Proto.PingRequest, global::Grpc.Proxy.Tests.Proto.PongResponse> __Method_PingServerStream = new grpc::Method<global::Grpc.Proxy.Tests.Proto.PingRequest, global::Grpc.Proxy.Tests.Proto.PongResponse>(
         grpc::MethodType.ServerStreaming,
         __ServiceName,
         "PingServerStream",
@@ -75,7 +75,7 @@ namespace Grpc.Proxy.Tools.Tests.Proto {
         __Marshaller_a_b_c_d_PongResponse);
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::Grpc.Proxy.Tools.Tests.Proto.PingRequest, global::Grpc.Proxy.Tools.Tests.Proto.PongResponse> __Method_PingDuplexStream = new grpc::Method<global::Grpc.Proxy.Tools.Tests.Proto.PingRequest, global::Grpc.Proxy.Tools.Tests.Proto.PongResponse>(
+    static readonly grpc::Method<global::Grpc.Proxy.Tests.Proto.PingRequest, global::Grpc.Proxy.Tests.Proto.PongResponse> __Method_PingDuplexStream = new grpc::Method<global::Grpc.Proxy.Tests.Proto.PingRequest, global::Grpc.Proxy.Tests.Proto.PongResponse>(
         grpc::MethodType.DuplexStreaming,
         __ServiceName,
         "PingDuplexStream",
@@ -85,7 +85,7 @@ namespace Grpc.Proxy.Tools.Tests.Proto {
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
     {
-      get { return global::Grpc.Proxy.Tools.Tests.Proto.TestReflection.Descriptor.Services[0]; }
+      get { return global::Grpc.Proxy.Tests.Proto.TestReflection.Descriptor.Services[0]; }
     }
 
     /// <summary>Base class for server-side implementations of Test</summary>
@@ -93,25 +93,25 @@ namespace Grpc.Proxy.Tools.Tests.Proto {
     public abstract partial class TestBase
     {
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::System.Threading.Tasks.Task<global::Grpc.Proxy.Tools.Tests.Proto.PongResponse> Ping(global::Grpc.Proxy.Tools.Tests.Proto.PingRequest request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::Grpc.Proxy.Tests.Proto.PongResponse> Ping(global::Grpc.Proxy.Tests.Proto.PingRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::System.Threading.Tasks.Task<global::Grpc.Proxy.Tools.Tests.Proto.PongResponse> PingClientStream(grpc::IAsyncStreamReader<global::Grpc.Proxy.Tools.Tests.Proto.PingRequest> requestStream, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::Grpc.Proxy.Tests.Proto.PongResponse> PingClientStream(grpc::IAsyncStreamReader<global::Grpc.Proxy.Tests.Proto.PingRequest> requestStream, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::System.Threading.Tasks.Task PingServerStream(global::Grpc.Proxy.Tools.Tests.Proto.PingRequest request, grpc::IServerStreamWriter<global::Grpc.Proxy.Tools.Tests.Proto.PongResponse> responseStream, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task PingServerStream(global::Grpc.Proxy.Tests.Proto.PingRequest request, grpc::IServerStreamWriter<global::Grpc.Proxy.Tests.Proto.PongResponse> responseStream, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::System.Threading.Tasks.Task PingDuplexStream(grpc::IAsyncStreamReader<global::Grpc.Proxy.Tools.Tests.Proto.PingRequest> requestStream, grpc::IServerStreamWriter<global::Grpc.Proxy.Tools.Tests.Proto.PongResponse> responseStream, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task PingDuplexStream(grpc::IAsyncStreamReader<global::Grpc.Proxy.Tests.Proto.PingRequest> requestStream, grpc::IServerStreamWriter<global::Grpc.Proxy.Tests.Proto.PongResponse> responseStream, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -146,52 +146,52 @@ namespace Grpc.Proxy.Tools.Tests.Proto {
       }
 
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::Grpc.Proxy.Tools.Tests.Proto.PongResponse Ping(global::Grpc.Proxy.Tools.Tests.Proto.PingRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::Grpc.Proxy.Tests.Proto.PongResponse Ping(global::Grpc.Proxy.Tests.Proto.PingRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return Ping(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::Grpc.Proxy.Tools.Tests.Proto.PongResponse Ping(global::Grpc.Proxy.Tools.Tests.Proto.PingRequest request, grpc::CallOptions options)
+      public virtual global::Grpc.Proxy.Tests.Proto.PongResponse Ping(global::Grpc.Proxy.Tests.Proto.PingRequest request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_Ping, null, options, request);
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::Grpc.Proxy.Tools.Tests.Proto.PongResponse> PingAsync(global::Grpc.Proxy.Tools.Tests.Proto.PingRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::Grpc.Proxy.Tests.Proto.PongResponse> PingAsync(global::Grpc.Proxy.Tests.Proto.PingRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return PingAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::Grpc.Proxy.Tools.Tests.Proto.PongResponse> PingAsync(global::Grpc.Proxy.Tools.Tests.Proto.PingRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::Grpc.Proxy.Tests.Proto.PongResponse> PingAsync(global::Grpc.Proxy.Tests.Proto.PingRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_Ping, null, options, request);
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncClientStreamingCall<global::Grpc.Proxy.Tools.Tests.Proto.PingRequest, global::Grpc.Proxy.Tools.Tests.Proto.PongResponse> PingClientStream(grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncClientStreamingCall<global::Grpc.Proxy.Tests.Proto.PingRequest, global::Grpc.Proxy.Tests.Proto.PongResponse> PingClientStream(grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return PingClientStream(new grpc::CallOptions(headers, deadline, cancellationToken));
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncClientStreamingCall<global::Grpc.Proxy.Tools.Tests.Proto.PingRequest, global::Grpc.Proxy.Tools.Tests.Proto.PongResponse> PingClientStream(grpc::CallOptions options)
+      public virtual grpc::AsyncClientStreamingCall<global::Grpc.Proxy.Tests.Proto.PingRequest, global::Grpc.Proxy.Tests.Proto.PongResponse> PingClientStream(grpc::CallOptions options)
       {
         return CallInvoker.AsyncClientStreamingCall(__Method_PingClientStream, null, options);
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncServerStreamingCall<global::Grpc.Proxy.Tools.Tests.Proto.PongResponse> PingServerStream(global::Grpc.Proxy.Tools.Tests.Proto.PingRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncServerStreamingCall<global::Grpc.Proxy.Tests.Proto.PongResponse> PingServerStream(global::Grpc.Proxy.Tests.Proto.PingRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return PingServerStream(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncServerStreamingCall<global::Grpc.Proxy.Tools.Tests.Proto.PongResponse> PingServerStream(global::Grpc.Proxy.Tools.Tests.Proto.PingRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncServerStreamingCall<global::Grpc.Proxy.Tests.Proto.PongResponse> PingServerStream(global::Grpc.Proxy.Tests.Proto.PingRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncServerStreamingCall(__Method_PingServerStream, null, options, request);
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncDuplexStreamingCall<global::Grpc.Proxy.Tools.Tests.Proto.PingRequest, global::Grpc.Proxy.Tools.Tests.Proto.PongResponse> PingDuplexStream(grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncDuplexStreamingCall<global::Grpc.Proxy.Tests.Proto.PingRequest, global::Grpc.Proxy.Tests.Proto.PongResponse> PingDuplexStream(grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return PingDuplexStream(new grpc::CallOptions(headers, deadline, cancellationToken));
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncDuplexStreamingCall<global::Grpc.Proxy.Tools.Tests.Proto.PingRequest, global::Grpc.Proxy.Tools.Tests.Proto.PongResponse> PingDuplexStream(grpc::CallOptions options)
+      public virtual grpc::AsyncDuplexStreamingCall<global::Grpc.Proxy.Tests.Proto.PingRequest, global::Grpc.Proxy.Tests.Proto.PongResponse> PingDuplexStream(grpc::CallOptions options)
       {
         return CallInvoker.AsyncDuplexStreamingCall(__Method_PingDuplexStream, null, options);
       }
@@ -222,10 +222,10 @@ namespace Grpc.Proxy.Tools.Tests.Proto {
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     public static void BindService(grpc::ServiceBinderBase serviceBinder, TestBase serviceImpl)
     {
-      serviceBinder.AddMethod(__Method_Ping, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Grpc.Proxy.Tools.Tests.Proto.PingRequest, global::Grpc.Proxy.Tools.Tests.Proto.PongResponse>(serviceImpl.Ping));
-      serviceBinder.AddMethod(__Method_PingClientStream, serviceImpl == null ? null : new grpc::ClientStreamingServerMethod<global::Grpc.Proxy.Tools.Tests.Proto.PingRequest, global::Grpc.Proxy.Tools.Tests.Proto.PongResponse>(serviceImpl.PingClientStream));
-      serviceBinder.AddMethod(__Method_PingServerStream, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Grpc.Proxy.Tools.Tests.Proto.PingRequest, global::Grpc.Proxy.Tools.Tests.Proto.PongResponse>(serviceImpl.PingServerStream));
-      serviceBinder.AddMethod(__Method_PingDuplexStream, serviceImpl == null ? null : new grpc::DuplexStreamingServerMethod<global::Grpc.Proxy.Tools.Tests.Proto.PingRequest, global::Grpc.Proxy.Tools.Tests.Proto.PongResponse>(serviceImpl.PingDuplexStream));
+      serviceBinder.AddMethod(__Method_Ping, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Grpc.Proxy.Tests.Proto.PingRequest, global::Grpc.Proxy.Tests.Proto.PongResponse>(serviceImpl.Ping));
+      serviceBinder.AddMethod(__Method_PingClientStream, serviceImpl == null ? null : new grpc::ClientStreamingServerMethod<global::Grpc.Proxy.Tests.Proto.PingRequest, global::Grpc.Proxy.Tests.Proto.PongResponse>(serviceImpl.PingClientStream));
+      serviceBinder.AddMethod(__Method_PingServerStream, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Grpc.Proxy.Tests.Proto.PingRequest, global::Grpc.Proxy.Tests.Proto.PongResponse>(serviceImpl.PingServerStream));
+      serviceBinder.AddMethod(__Method_PingDuplexStream, serviceImpl == null ? null : new grpc::DuplexStreamingServerMethod<global::Grpc.Proxy.Tests.Proto.PingRequest, global::Grpc.Proxy.Tests.Proto.PongResponse>(serviceImpl.PingDuplexStream));
     }
 
   }

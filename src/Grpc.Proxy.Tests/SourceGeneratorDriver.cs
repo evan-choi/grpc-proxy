@@ -6,7 +6,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using VerifyNUnit;
 using VerifyTests;
 
-namespace Grpc.Proxy.Tools.Tests;
+namespace Grpc.Proxy.Tests;
 
 public static class SourceGeneratorDriver
 {
@@ -27,7 +27,7 @@ public static class SourceGeneratorDriver
             .Select(x => MetadataReference.CreateFromFile(x.Location))
             .Prepend(MetadataReference.CreateFromFile(typeof(object).Assembly.Location));
 
-        var compilation = CSharpCompilation.Create("Grpc.Proxy.Tools.Tests", syntaxTrees, references);
+        var compilation = CSharpCompilation.Create("Grpc.Proxy.Tests", syntaxTrees, references);
 
         var generatorDriver = CSharpGeneratorDriver
             .Create(new T())
