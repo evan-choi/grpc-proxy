@@ -41,7 +41,6 @@ public sealed class ExampleImpl : Example.ExampleProxy
         response.Message += ", Decorated by proxy!";
 
         return response;
-        
     }
 }
 ```
