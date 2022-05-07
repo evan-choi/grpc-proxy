@@ -25,6 +25,7 @@ server.Services.Add(Example2.BindService(proxyService2));
 
 ### Advanced usage
 Extends auto-generated proxy client and intercept request/response
+
 ```csharp
 public sealed class ExampleImpl : Example.ExampleProxy
 {
@@ -43,4 +44,26 @@ public sealed class ExampleImpl : Example.ExampleProxy
         return response;
     }
 }
+```
+
+### Dynamic Routing
+Dynamic routing operates based on the method defined in ServiceDescriptor.
+
+```csharp
+var targetChannelA = new Channel("1.2.3.4", 12345, ChannelCredentials.Insecure);
+var targetInvokerA = targetChannelA.CreateCallInvoker();
+
+var targetChannelB = new Channel("4.3.2.1", 54321, ChannelCredentials.Insecure);
+var targetInvokerB = targetChannelB.CreateCallInvoker();
+
+var proxyRouter = new ProxyCallRouter();
+
+proxyRouter.Add(Example1.Descriptor, targetInvokerA); // Example1 -> 1.2.3.4:12345
+proxyRouter.Add(Example2.Descriptor, targetInvokerB); // Example2 -> 4.3.2.1:54321
+
+/* Setup Proxy Server */
+
+var proxyServer = new Server();
+server.Services.Add(Example1.BindService(new Example1.Example1Proxy(proxyRouter)));
+server.Services.Add(Example2.BindService(new Example2.Example2Proxy(proxyRouter)));
 ```
