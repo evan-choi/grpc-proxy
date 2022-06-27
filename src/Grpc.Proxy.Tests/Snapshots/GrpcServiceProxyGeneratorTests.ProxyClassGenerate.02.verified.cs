@@ -10,13 +10,13 @@ namespace Grpc.Proxy.Tests.Proto;
 
 public static partial class Test
 {
-    static Test()
-    {
-        grpcProxy::GrpcProxyReflection.Add<TestProxy>(Descriptor);
-    }
-
     public class TestProxy : TestBase, grpcProxy::IProxyService
     {
+        static TestProxy()
+        {
+            grpcProxy::GrpcProxyReflection.Add<TestProxy>(Descriptor);
+        }
+
         private readonly grpcProxy::IProxyCallInvoker _invoker;
 
         public TestProxy(grpcProxy::IProxyCallInvoker callInvoker)

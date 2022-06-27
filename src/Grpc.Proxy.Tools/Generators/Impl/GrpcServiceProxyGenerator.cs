@@ -27,13 +27,13 @@ internal sealed class GrpcServiceProxyGenerator : GrpcSourceTextGenerator
         gen.Append($@"
 {Context.ServiceTypeSyntax.Modifiers} class {Context.ServiceType.Name}
 {{
-    static {Context.ServiceType.Name}()
-    {{
-        grpcProxy::GrpcProxyReflection.Add<{Context.ServiceName}Proxy>(Descriptor);
-    }}
-
     public class {Context.ServiceName}Proxy : {Context.BaseDeclaration.TypeSymbol.Name}, grpcProxy::IProxyService
     {{
+        static {Context.ServiceName}Proxy()
+        {{
+            grpcProxy::GrpcProxyReflection.Add<{Context.ServiceName}Proxy>(Descriptor);
+        }}
+
         private readonly grpcProxy::IProxyCallInvoker _invoker;
 
         public {Context.ServiceName}Proxy(grpcProxy::IProxyCallInvoker callInvoker)
