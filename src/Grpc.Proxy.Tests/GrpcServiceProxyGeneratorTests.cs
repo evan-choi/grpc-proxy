@@ -26,7 +26,7 @@ public class GrpcServiceProxyGeneratorTests
         };
 
         return SourceGeneratorDriver
-            .Verify<GrpcServiceProxyGenerator>(sources, referenceAssemblies)
+            .Verify<Generator>(sources, referenceAssemblies)
             .UseDirectory("Snapshots");
     }
 }

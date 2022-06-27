@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.IO;
 using System.Linq;
-using System.Text;
 using Grpc.Core;
-using Grpc.Proxy.Tools.Extensions;
 using Grpc.Proxy.Tools.Generators;
+using Grpc.Proxy.Tools.Generators.Impl;
 using Grpc.Proxy.Tools.Models;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.CodeAnalysis.Text;
 
 namespace Grpc.Proxy.Tools;
 
 [Generator]
-public class GrpcServiceProxyGenerator : IIncrementalGenerator
+public class Generator : IIncrementalGenerator
 {
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
@@ -85,7 +81,9 @@ public class GrpcServiceProxyGenerator : IIncrementalGenerator
 
             var grpcSourceTextGenerators = new GrpcSourceTextGenerator[]
             {
-                new Generators.Impl.GrpcServiceProxyGenerator(grpcSourceTextGeneratorContext)
+                new GrpcServiceProxyGenerator(grpcSourceTextGeneratorContext),
+                new GrpcServiceClientInterfaceGenerator(grpcSourceTextGeneratorContext),
+                new GrpcServiceClientGenerator(grpcSourceTextGeneratorContext)
             };
 
             foreach (var grpcSourceTextGenerator in grpcSourceTextGenerators)

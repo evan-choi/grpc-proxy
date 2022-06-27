@@ -1,5 +1,8 @@
+using System;
 using System.Linq;
 using System.Text;
+using Grpc.Core;
+using Grpc.Proxy.Tools.Extensions;
 using Grpc.Proxy.Tools.Models;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
@@ -24,7 +27,12 @@ internal sealed class GrpcServiceProxyGenerator : GrpcSourceTextGenerator
         gen.Append($@"
 {Context.ServiceTypeSyntax.Modifiers} class {Context.ServiceType.Name}
 {{
-    public class {Context.ServiceName}Proxy : {Context.BaseDeclaration.TypeSymbol.Name}
+    static {Context.ServiceType.Name}()
+    {{
+        grpcProxy::GrpcProxyReflection.Add<{Context.ServiceName}Proxy>(Descriptor);
+    }}
+
+    public class {Context.ServiceName}Proxy : {Context.BaseDeclaration.TypeSymbol.Name}, grpcProxy::IProxyService
     {{
         private readonly grpcProxy::IProxyCallInvoker _invoker;
 
@@ -37,12 +45,13 @@ internal sealed class GrpcServiceProxyGenerator : GrpcSourceTextGenerator
 
     protected override void WriteMethod(StringBuilder gen, string methodField, GrpcMethodDeclaration method)
     {
+        (var returnType, ParameterInfo[] parameters) = GetMethodLayout(method);
         var invokerMethodName = $"{method.Type.ToString()}Call";
 
         gen.Append($@"
-        public override {method.ReturnType} {method.Name}({string.Join(", ", method.Parameters)}, grpc::ServerCallContext context)
+        public override {returnType} {method.Name}({string.Join(", ", parameters)})
         {{
-            return _invoker.{invokerMethodName}({methodField}, {string.Join(", ", method.Parameters.Select(x => x.Name))}, context);
+            return _invoker.{invokerMethodName}({methodField}, {string.Join(", ", parameters.Select(x => x.Name))});
         }}
 ");
     }
@@ -57,5 +66,69 @@ internal sealed class GrpcServiceProxyGenerator : GrpcSourceTextGenerator
     protected override void OnComplete(SourceProductionContext context, SourceText sourceText)
     {
         context.AddSource($"{Context.ServiceType.Name}.{Context.ServiceName}Proxy.gen.cs", sourceText);
+    }
+
+    private static (string ReturnType, ParameterInfo[] Parameters) GetMethodLayout(GrpcMethodDeclaration method)
+    {
+        var requestType = $"global::{method.Request.ContainingNamespace.GetFullName()}.{method.Request.Name}";
+        var responseType = $"global::{method.Response.ContainingNamespace.GetFullName()}.{method.Response.Name}";
+        var serverCallContext = new ParameterInfo("grpc::ServerCallContext", "context");
+
+        return method.Type switch
+        {
+            MethodType.Unary => (
+                Task(responseType),
+                new[]
+                {
+                    new ParameterInfo(requestType, "request"),
+                    serverCallContext
+                }
+            ),
+            MethodType.ClientStreaming => (
+                Task(responseType),
+                new[]
+                {
+                    new ParameterInfo(IAsyncStreamReader(requestType), "requestStream"),
+                    serverCallContext
+                }
+            ),
+            MethodType.ServerStreaming => (
+                Task(null),
+                new[]
+                {
+                    new ParameterInfo(requestType, "request"),
+                    new ParameterInfo(IServerStreamWriter(responseType), "responseStream"),
+                    serverCallContext
+                }
+            ),
+            MethodType.DuplexStreaming => (
+                Task(null),
+                new[]
+                {
+                    new ParameterInfo(IAsyncStreamReader(requestType), "requestStream"),
+                    new ParameterInfo(IServerStreamWriter(responseType), "responseStream"),
+                    serverCallContext
+                }
+            ),
+            _ => throw new InvalidOperationException()
+        };
+
+        static string Task(string genericType)
+        {
+            if (genericType is null)
+                return "global::System.Threading.Tasks.Task";
+
+            return $"global::System.Threading.Tasks.Task<{genericType}>";
+        }
+
+        static string IAsyncStreamReader(string genericType)
+        {
+            return $"grpc::IAsyncStreamReader<{genericType}>";
+        }
+
+        static string IServerStreamWriter(string genericType)
+        {
+            return $"grpc::IServerStreamWriter<{genericType}>";
+        }
     }
 }
