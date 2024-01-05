@@ -64,12 +64,16 @@ public sealed class ProxyCallInvoker : IProxyCallInvoker
         where TRequest : class
         where TResponse : class
     {
-        return await invoker.AsyncUnaryCall(
+        AsyncUnaryCall<TResponse> call = invoker.AsyncUnaryCall(
             method,
             context.Host,
             CreateCallOptions(context),
             request
         );
+
+        await CopyResponseHeadersToContextAsync(call.ResponseHeadersAsync, context);
+
+        return await call;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -86,6 +90,8 @@ public sealed class ProxyCallInvoker : IProxyCallInvoker
             context.Host,
             CreateCallOptions(context)
         );
+
+        QueueCopyResponseHeadersToContext(streamingCall.ResponseHeadersAsync, context);
 
         await CopyStreaming(requestStream, streamingCall.RequestStream, context);
 
@@ -109,6 +115,8 @@ public sealed class ProxyCallInvoker : IProxyCallInvoker
             request
         );
 
+        QueueCopyResponseHeadersToContext(streamingCall.ResponseHeadersAsync, context);
+
         await CopyStreaming(streamingCall.ResponseStream, responseStream, context);
     }
 
@@ -127,6 +135,8 @@ public sealed class ProxyCallInvoker : IProxyCallInvoker
             context.Host,
             CreateCallOptions(context)
         );
+
+        QueueCopyResponseHeadersToContext(streamingCall.ResponseHeadersAsync, context);
 
         await Task.WhenAll(
             CopyStreaming(requestStream, streamingCall.RequestStream, context),
@@ -152,5 +162,47 @@ public sealed class ProxyCallInvoker : IProxyCallInvoker
 
         if (writer is IClientStreamWriter<T> clientStreamWriter)
             await clientStreamWriter.CompleteAsync();
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static async Task CopyResponseHeadersToContextAsync(Task<Metadata> responseHeadersTask, ServerCallContext context)
+    {
+        var headers = await responseHeadersTask;
+
+        if (headers.Count > 0)
+            await context.WriteResponseHeadersAsync(headers);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static void QueueCopyResponseHeadersToContext(Task<Metadata> responseHeadersTask, ServerCallContext context)
+    {
+        if (context.CancellationToken.IsCancellationRequested)
+            return;
+
+        responseHeadersTask.ContinueWith(
+            ResponseHeadersCompletedAsync,
+            context,
+            context.CancellationToken,
+            TaskContinuationOptions.OnlyOnRanToCompletion,
+            TaskScheduler.Default
+        );
+
+        return;
+
+        static async Task ResponseHeadersCompletedAsync(Task<Metadata> responseHeadersTask, object state)
+        {
+            try
+            {
+                var context = (ServerCallContext)state;
+                var headers = responseHeadersTask.Result; // always completed. (OnlyOnRanToCompletion)
+
+                if (headers.Count > 0)
+                    await context.WriteResponseHeadersAsync(headers);
+            }
+            catch
+            {
+                // ignored
+            }
+        }
     }
 }
