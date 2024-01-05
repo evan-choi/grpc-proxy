@@ -340,3 +340,5 @@ healthchecksdb
 
 config.json
 logs/
+
+**/.DS_Store
