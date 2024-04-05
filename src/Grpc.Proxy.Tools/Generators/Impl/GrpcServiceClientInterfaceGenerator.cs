@@ -80,7 +80,12 @@ internal sealed class GrpcServiceClientInterfaceGenerator : GrpcSourceTextGenera
 
     protected override void OnComplete(SourceProductionContext context, SourceText sourceText)
     {
-        context.AddSource($"I{Context.ServiceName}Client.gen.cs", sourceText);
+        var serviceNamespace = Context.ServiceNamespace;
+
+        if (!string.IsNullOrEmpty(serviceNamespace))
+            serviceNamespace += '.';
+
+        context.AddSource($"{serviceNamespace}I{Context.ServiceName}Client.gen.cs", sourceText);
     }
 
     private static (string SyncReturnType, string AsyncReturnType, ParameterInfo[] Parameters) GetMethodLayout(GrpcMethodDeclaration method)

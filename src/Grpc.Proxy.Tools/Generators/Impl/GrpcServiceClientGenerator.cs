@@ -35,6 +35,11 @@ internal sealed class GrpcServiceClientGenerator : GrpcSourceTextGenerator
 
     protected override void OnComplete(SourceProductionContext context, SourceText sourceText)
     {
-        context.AddSource($"{Context.ServiceType.Name}.{Context.ServiceName}Client.gen.cs", sourceText);
+        var serviceNamespace = Context.ServiceNamespace;
+
+        if (!string.IsNullOrEmpty(serviceNamespace))
+            serviceNamespace += '.';
+
+        context.AddSource($"{serviceNamespace}{Context.ServiceType.Name}.{Context.ServiceName}Client.gen.cs", sourceText);
     }
 }

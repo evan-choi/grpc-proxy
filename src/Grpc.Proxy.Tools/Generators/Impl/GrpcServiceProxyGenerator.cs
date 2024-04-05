@@ -65,7 +65,12 @@ internal sealed class GrpcServiceProxyGenerator : GrpcSourceTextGenerator
 
     protected override void OnComplete(SourceProductionContext context, SourceText sourceText)
     {
-        context.AddSource($"{Context.ServiceType.Name}.{Context.ServiceName}Proxy.gen.cs", sourceText);
+        var serviceNamespace = Context.ServiceNamespace;
+
+        if (!string.IsNullOrEmpty(serviceNamespace))
+            serviceNamespace += '.';
+
+        context.AddSource($"{serviceNamespace}{Context.ServiceType.Name}.{Context.ServiceName}Proxy.gen.cs", sourceText);
     }
 
     private static (string ReturnType, ParameterInfo[] Parameters) GetMethodLayout(GrpcMethodDeclaration method)
